@@ -1,4 +1,6 @@
-require('dotenv').config();
+if(!process.env.DB_ENV || process.env.DB_ENV === 'testing'){
+    require('dotenv').config();
+}
 
 const express = require('express');
 const cors = require('cors');
@@ -17,8 +19,6 @@ server.use(express.json());
 server.use('/api/auth', authRouter);
 server.use('/api/users', authenticate, userRouter);
 
-server.get('/', (req, res) => {
-    res.status(200).json({message: 'hi'});
-});
+server.get('/', (req, res) => { res.status(200).json({message: 'hi'}); });
 
 module.exports = server;
