@@ -108,3 +108,7 @@ dist
 .vscode-test
 
 .env
+
+*.sqlite3
+*.db3
+*.sh
