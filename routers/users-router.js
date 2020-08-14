@@ -46,8 +46,8 @@ router.get('/:id', async (req, res) => {
 
 // put by token
 router.put('/user', async (req, res) => {
-    const { isFarmer, farmID, email, username, name, zipCode, addressStreet, addressCity, addressState } = req.body;
-    const newValues = {isFarmer, farmID, email, username, name, zipCode, addressStreet, addressCity, addressState };
+    const { email, username, name } = req.body;
+    const newValues = { email, username, name };
     let { password, newPassword } = req.body;
     console.log('updating user- newValues: ', newValues);
     for(let val in newValues){
@@ -116,11 +116,6 @@ router.put('/user', async (req, res) => {
             res.status(403).json({message: 'Invalid credentials'});
         }
 
-        // if(err === 1){
-        //     res.status(400).json({message: `Email, username and password are required.`});
-        // }
-        
-        
         else{
             console.log(err);
             res.status(500).json({message: 'Server could not update user.', error: err});
